@@ -47,6 +47,11 @@ func get_value(pos : Vector2i) -> float:
 	assert(e, "Error: The index exceeds the boundary of the matrix!")
 	return data[pos.y*x+pos.x]
 
+func set_value(pos : Vector2i, f : float) -> void:
+	var e = pos < rect() and pos >= Vector2i.ZERO
+	assert(e, "Error: The index exceeds the boundary of the matrix!")
+	data[pos.y*x+pos.x] = f
+
 func random(min : float, max : float, rect : Vector2i) -> void:
 	is_resize = true
 	x = rect.x
