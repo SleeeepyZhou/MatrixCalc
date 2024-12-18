@@ -3,6 +3,7 @@ extends Node
 const MATRIX_ADD = preload("res://addons/matrix_calc/Shader/matrix_add.glsl")
 const MATRIX_SUB = preload("res://addons/matrix_calc/Shader/matrix_sub.glsl")
 const MATRIX_MUL = preload("res://addons/matrix_calc/Shader/matrix_mul.glsl")
+const MATRIX_HAD = preload("res://addons/matrix_calc/Shader/matrix_had.glsl")
 
 var use_render : bool = ProjectSettings.get_setting("rendering/renderer/rendering_method") != "gl_compatibility":
 	set(b):

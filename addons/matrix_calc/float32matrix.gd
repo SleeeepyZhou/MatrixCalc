@@ -77,6 +77,27 @@ func transpose() -> Float32Matrix:
 			matrixT.data[j*y+i] = data[i*x+j]
 	return matrixT
 
+func Hadamard(B : Float32Matrix) -> Float32Matrix:
+	var e : bool = rect() == B.rect()
+	assert(e, "Error: Matrix dimension mismatch!")
+
+	var C := Float32Matrix.new(rect())
+	if !MatrixLib.use_render or x*y <= 4096:
+		for i in range(data.size()):
+			C.data[i] = data[i] * B.data[i]
+	else:
+		var matrices := PackedInt32Array([x,y])
+		var input := [data, B.data, C.data, matrices]
+		var gsize := Vector3i(ceil(x/16.0),ceil(y/16.0),1)
+		var rd : RenderingDevice = RenderingServer.create_local_rendering_device()
+		var out = MatrixLib.binding_uniform(rd, input, MatrixLib.MATRIX_HAD.get_spirv(), gsize)
+		rd.submit()
+		rd.sync()
+		var output := rd.buffer_get_data(out[2]).to_float32_array()
+		C.data = output
+		MatrixLib.freebuffer(rd, out)
+	return C
+
 func mul_scalar(f : float) -> void:
 	for i in range(data.size()):
 		data[i] *= f
