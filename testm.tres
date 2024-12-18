@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Float32Matrix" load_steps=2 format=3 uid="uid://bx1hb6syyvff5"]
+
+[ext_resource type="Script" path="res://addons/matrix_calc/float32matrix.gd" id="1_ti6bf"]
+
+[resource]
+script = ExtResource("1_ti6bf")
+x = 3
+y = 1
+data = PackedFloat32Array(1, 2, 3)
