@@ -1,6 +1,6 @@
 # MatrixCalc
-Matrix calculator for Godot/Maodot. 
-Automatically use computational shaders to accelerate calculations based on computational complexity.
+Matrix class and calculator for Godot/Maodot. 
+Automatically use computational shaders(GPU or other) to accelerate calculations based on computational complexity.
 
 ## Currently supported  
 

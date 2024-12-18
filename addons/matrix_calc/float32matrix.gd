@@ -70,6 +70,13 @@ func zeros(rect : Vector2i) -> void:
 	data.resize(rect.x * rect.y)
 	is_resize = false
 
+func transpose() -> Float32Matrix:
+	var matrixT := Float32Matrix.new(rect())
+	for i in y:
+		for j in x:
+			matrixT.data[j*y+i] = data[i*x+j]
+	return matrixT
+
 func mul_scalar(f : float) -> void:
 	for i in range(data.size()):
 		data[i] *= f
